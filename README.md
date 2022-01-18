@@ -2,6 +2,14 @@
 
 What's the Weather is a weather dashboard which is run in the browser and features dynamically updated HTML and CSS. The data is retrieved from the OpenWeather Current Weather Data API as well as the One Call API. The user types in a city name and is presented with today's forecast, as well as the extended five day forecast. 
 
+The dashboard utilizes:
+
+ * HTML
+ * CSS
+ * Javascript
+ * API's
+ * local Storage
+
 User Story
 AS A traveler
 I WANT to see the weather outlook for multiple cities
