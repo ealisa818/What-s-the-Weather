@@ -1,0 +1,43 @@
+
+
+.navbar-brand {
+    font-size: 40px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+    color:blanchedalmond;
+    background-color:cornflowerblue;
+    width: 100%;
+
+}
+
+.row {
+    background-color: darkslategray;
+    color:black;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 18px;    
+    border-color: firebrick;
+    border-width: 4px;
+}
+
+.input-group {
+    margin-top: 10px;
+    color:black;
+}
+
+.card-bodyDay1 {
+    border-width: 5px;
+    border-color:firebrick;
+
+}
+.grid{
+    border-color:darkblue;
+    border-width: 10px;
+
+}
+
+.card {
+    border: blue;
+    border-width: 5px;
+    background-color: cadetblue;
+
+}
