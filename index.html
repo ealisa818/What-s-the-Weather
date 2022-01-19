@@ -18,7 +18,7 @@
     <div class="conatainer">
     <div class="row">Search for a City
     <!-- left side column -->
-      <div class ="col">
+      <div class ="col savedCity">
     <div class="input-group mb-3">
         <input type="text" class="form-control" id="search-city" placeholder="Enter City Name" aria-label="Recipient's username" aria-describedby="button-addon2">
         <button class="btn btn-outline-secondary" type="button" id="search-button">Search
@@ -39,10 +39,11 @@
      </div>
      <div class="col">
       <div class="search results">
-        <div class="card" style="width: 16rem;">
+        <div class="card today" style="width: 16rem;">
           <!-- put in the javascript -->
-            <img src="http://openweathermap.org/img/wn/" + 10d + "@2x.png" class="card-img-top">
+            <!-- <img src="http://openweathermap.org/img/wn/" + 10d + "@2x.png" class="card-img-top"> -->
             <div class="card-body">
+              <p class="image" id="imageToday"></p>
               <p class="card-text" id="city"></p>
               <p class="card-text" id="maxToday"></p>
               <p class="card-text" id="minToday"></p>

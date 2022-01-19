@@ -34,7 +34,10 @@
     border-width: 10px;
 
 }
-
+.weatherPicture{
+    width: 80px;
+    height: 80px;
+}
 .card {
     border: blue;
     border-width: 5px;

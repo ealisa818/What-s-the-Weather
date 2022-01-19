@@ -8,8 +8,8 @@ var input = document.getElementById("search-city");
 
 // var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial" +"&appid=" +APIKey;
 // var queryURL = https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid=" + API key 
-// "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial" + "&appid=" + APIKey; 
-var imageToday = document.getElementById("imageToday");
+// // "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial" + "&appid=" + APIKey; 
+// var imageToday = document.getElementById("imageToday");
 var maxToday = document.getElementById("maxToday");
 var minToday = document.getElementById("minToday");
 var windToday = document.getElementById("windToday");
@@ -27,20 +27,39 @@ var iconDay2 = document.getElementById("iconDay2");
 var windDay2 = document.getElementById("windDay2");
 var humidityDay2 = document.getElementById("humidityDay2");
 "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + city + "&cnt=" + days + "appid=" + APIKey;
-
+var cityarr = []; 
 // api.openweathermap.org/data/2.5/forecast/daily?q={city}&cnt={5}&appid={APIKey}
 
-searchButton.addEventListener("click", function(){
+searchButton.addEventListener("click", function(event){
     city = input.value.trim();
-    localStorage.setItem(input, city);
-    localStorage.getItem(input, city);
-    
-    getAPI();
+    // localStorage.setItem("city", city);
+    // localStorage.getItem("city", city);
+    // 
+    cityarr.push(city);
+    localStorage.cities = JSON.stringify(cityarr);
+    console.log(localStorage);
+    getAPI(city);
 })
-
-function getAPI() {
-    input.value="";
-    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial" +"&appid=" +APIKey;
+function getStorage() {
+    cityarr = JSON.parse(localStorage.cities);
+    console.log(cityarr);
+    for (i=0; i<cityarr.length; i++) {
+        var citybutton = document.createElement("button");
+        citybutton.textContent = cityarr[i];
+        citybutton.onclick = function(event) {
+            getAPI(event.target.textContent);
+            console.log("Hello");
+        }
+        document.querySelector(".savedCity").appendChild(citybutton);
+    }
+}
+function getAPI(cityInput) {
+    if (document.querySelector(".weatherPicture")) {
+        
+        document.querySelector(".weatherPicture").remove();
+    };
+        input.value="";
+    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityInput + "&units=imperial" +"&appid=" +APIKey;
 
     fetch(queryURL)
     .then (function(res) {
@@ -57,7 +76,11 @@ function getAPI() {
         
         // console.log("PictureIconId = " + data.weather.icon);
         // var card = document.createElement(p1);
-        // // imageToday.src = "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";    
+        var imageToday = document.createElement("img");
+        console.log(data.weather[0].icon)
+        imageToday.src = "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png";    
+        imageToday.classList.add("weatherPicture")
+        document.querySelector(".today").appendChild(imageToday);
         // imageToday.innerHTML = " http://openweathermap.org/img/wn/10d@2x.png";
         minToday.textContent = "Minimum Temp= " + data.main.temp_min + " degrees"; 
         windToday.textContent = "Wind Speed= " + data.wind.speed + " mph"; 
@@ -70,10 +93,10 @@ function getAPI() {
         // minTemp.textContent = data.main.temp_min;
         // // card-text.appendChild(minTemp);
         // console.log(maxToday);
-getOneCall();
+getOneCall(lat, lon);
     });
 }
-function getOneCall() {
+function getOneCall(lat, lon) {
  var query5URL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial" + "&appid=" + APIKey;
 fetch(query5URL)
     .then (function(res) {
@@ -108,4 +131,4 @@ fetch(query5URL)
         humidityDay5.textContent = "Humidity: " + data.daily[5].humidity + " %";
     });
 }
-
+getStorage();
